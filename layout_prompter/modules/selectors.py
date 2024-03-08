@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 import abc
 import random
 from dataclasses import dataclass
-from typing import Dict, List, Type
+from typing import TYPE_CHECKING, Dict, List, Type
 
 import cv2
 import numpy as np
@@ -13,6 +15,9 @@ from layout_prompter.utils import (
     labels_similarity,
 )
 
+if TYPE_CHECKING:
+    from layout_prompter.typehint import ProcessedLayoutData
+
 __all__ = [
     "ExemplarSelector",
     "GenTypeExemplarSelector",
@@ -22,6 +27,7 @@ __all__ = [
     "RefinementExemplarSelector",
     "ContentAwareExemplarSelector",
     "TextToLayoutExemplarSelector",
+    "create_selector",
 ]
 
 
@@ -38,13 +44,13 @@ class ExemplarSelector(object, metaclass=abc.ABCMeta):
             self.train_data = self.train_data[: self.candidate_size]
 
     @abc.abstractmethod
-    def __call__(self, test_data: dict):
+    def __call__(self, test_data: ProcessedLayoutData) -> List[ProcessedLayoutData]:
         raise NotImplementedError
 
-    def _is_filter(self, data):
-        return (data["discrete_gold_bboxes"][:, 2:] == 0).sum().bool().item()
+    def _is_filter(self, data: ProcessedLayoutData) -> bool:
+        return (data["discrete_gold_bboxes"][:, 2:] == 0).sum().bool().item()  # type: ignore
 
-    def _retrieve_exemplars(self, scores: list):
+    def _retrieve_exemplars(self, scores: list) -> List[ProcessedLayoutData]:
         scores = sorted(scores, key=lambda x: x[1], reverse=True)
         exemplars = []
         for i in range(len(self.train_data)):
@@ -59,7 +65,7 @@ class ExemplarSelector(object, metaclass=abc.ABCMeta):
 
 @dataclass
 class GenTypeExemplarSelector(ExemplarSelector):
-    def __call__(self, test_data: dict):
+    def __call__(self, test_data: ProcessedLayoutData) -> List[ProcessedLayoutData]:
         scores = []
         test_labels = test_data["labels"]
         for i in range(len(self.train_data)):
@@ -74,7 +80,7 @@ class GenTypeSizeExemplarSelector(ExemplarSelector):
     labels_weight: float = 0.5
     bboxes_weight: float = 0.5
 
-    def __call__(self, test_data: dict):
+    def __call__(self, test_data: ProcessedLayoutData) -> List[ProcessedLayoutData]:
         scores = []
         test_labels = test_data["labels"]
         test_bboxes = test_data["bboxes"][:, 2:]
@@ -95,7 +101,7 @@ class GenTypeSizeExemplarSelector(ExemplarSelector):
 
 @dataclass
 class GenRelationExemplarSelector(ExemplarSelector):
-    def __call__(self, test_data: dict):
+    def __call__(self, test_data: ProcessedLayoutData) -> List[ProcessedLayoutData]:
         scores = []
         test_labels = test_data["labels"]
         for i in range(len(self.train_data)):
@@ -110,7 +116,7 @@ class CompletionExemplarSelector(ExemplarSelector):
     labels_weight: float = 0.0
     bboxes_weight: float = 1.0
 
-    def __call__(self, test_data: dict):
+    def __call__(self, test_data: ProcessedLayoutData) -> List[ProcessedLayoutData]:
         scores = []
         test_labels = test_data["labels"][:1]
         test_bboxes = test_data["bboxes"][:1, :]
@@ -118,12 +124,12 @@ class CompletionExemplarSelector(ExemplarSelector):
             train_labels = self.train_data[i]["labels"][:1]
             train_bboxes = self.train_data[i]["bboxes"][:1, :]
             score = labels_bboxes_similarity(
-                train_labels,
-                train_bboxes,
-                test_labels,
-                test_bboxes,
-                self.labels_weight,
-                self.bboxes_weight,
+                bboxes_1=train_bboxes,
+                bboxes_2=test_bboxes,
+                bboxes_weight=self.bboxes_weight,
+                labels_1=train_labels,
+                labels_2=test_labels,
+                labels_weight=self.labels_weight,
             )
             scores.append([i, score])
         return self._retrieve_exemplars(scores)
@@ -134,7 +140,7 @@ class RefinementExemplarSelector(ExemplarSelector):
     labels_weight: float = 0.5
     bboxes_weight: float = 0.5
 
-    def __call__(self, test_data: dict):
+    def __call__(self, test_data: ProcessedLayoutData) -> List[ProcessedLayoutData]:
         scores = []
         test_labels = test_data["labels"]
         test_bboxes = test_data["bboxes"]
@@ -171,7 +177,7 @@ class ContentAwareExemplarSelector(ExemplarSelector):
             )
         return binary_image
 
-    def __call__(self, test_data: dict):
+    def __call__(self, test_data: ProcessedLayoutData) -> List[ProcessedLayoutData]:
         scores = []
         test_content_bboxes = test_data["discrete_content_bboxes"]
         test_binary = self._to_binary_image(test_content_bboxes)
@@ -187,7 +193,7 @@ class ContentAwareExemplarSelector(ExemplarSelector):
 
 @dataclass
 class TextToLayoutExemplarSelector(ExemplarSelector):
-    def __call__(self, test_data: dict):
+    def __call__(self, test_data: ProcessedLayoutData) -> List[ProcessedLayoutData]:
         scores = []
         test_embedding = test_data["embedding"]
         for i in range(len(self.train_data)):
