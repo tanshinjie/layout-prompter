@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 
 from layout_prompter.modules import (
     LLM,
@@ -70,7 +70,7 @@ class LayoutPrompter(object):
         max_num_try: int = 5,
         exemplars: Optional[List[ProcessedLayoutData]] = None,
         **kwargs,
-    ) -> Any:
+    ) -> List[RankerOutput]:
         prompt_messages = self.build_prompt_messages(
             test_data=test_data, exemplars=exemplars
         )
