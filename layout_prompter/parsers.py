@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, List, TypedDict
 import torch
 from openai.types.chat import ChatCompletion, ChatCompletionMessage
 
-from layout_prompter.dataset import LayoutDataset
+from layout_prompter.datasets import LayoutDataset
 
 if TYPE_CHECKING:
     from layout_prompter.modules.llm import TGIOutput

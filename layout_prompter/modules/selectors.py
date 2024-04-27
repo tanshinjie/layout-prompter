@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Dict, List, Optional, Type
 import cv2
 import numpy as np
 
-from layout_prompter.dataset import LayoutDataset
+from layout_prompter.datasets import LayoutDataset
 from layout_prompter.utils import (
     labels_bboxes_similarity,
     labels_similarity,
@@ -223,7 +223,11 @@ def create_selector(
     num_prompt: int,
     dataset: Optional[LayoutDataset] = None,
 ) -> ExemplarSelector:
+    if task == "content":
+        assert dataset is not None, "`dataset` must be provided for content-aware task"
+
     selector_cls = SELECTOR_MAP[task]
+
     selector = selector_cls(
         train_dataset=train_dataset,
         candidate_size=candidate_size,

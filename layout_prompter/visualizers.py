@@ -11,7 +11,7 @@ import torch
 from PIL import Image, ImageDraw
 from PIL.Image import Image as PilImage
 
-from layout_prompter.dataset import LayoutDataset
+from layout_prompter.datasets import LayoutDataset
 from layout_prompter.modules.rankers import RankerOutput
 
 if TYPE_CHECKING:
@@ -115,7 +115,11 @@ class ContentAwareVisualizer(VisualizerMixin):
 
         return drawn
 
-    def __call__(self, predictions, test_idx):
+    def __call__(  # type: ignore[override]
+        self,
+        predictions: Union[List[ProcessedLayoutData], List[RankerOutput]],
+        test_idx: int,
+    ) -> List[PilImage]:
         images = []
         pic = (
             Image.open(os.path.join(self.canvas_path, f"{test_idx}.png"))
@@ -123,7 +127,7 @@ class ContentAwareVisualizer(VisualizerMixin):
             .resize((self.dataset.canvas_width, self.dataset.canvas_height))
         )
         for prediction in predictions:
-            labels, bboxes = prediction
+            labels, bboxes = prediction["labels"], prediction["bboxes"]
             labels = labels.unsqueeze(-1)
             labels = np.array(labels, dtype=int)
             bboxes = np.array(bboxes)
