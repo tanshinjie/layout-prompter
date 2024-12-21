@@ -1,0 +1,156 @@
+{
+    "prompt": [
+        {
+            "role": "system",
+            "content": "Please generate a layout based on the given information. You need to ensure that the generated layout looks realistic, with elements well aligned and avoiding unnecessary overlap.\nTask Description: content-aware layout generation\nPlease place the following elements to avoid salient content, and underlay must be the background of text or logo.\nLayout Domain: poster layout\nCanvas Size: canvas width is 102px, canvas height is 150px"
+        },
+        {
+            "role": "user",
+            "content": "Content Constraint: left 30px, top 39px, width 12px, height 104px | left 45px, top 39px, width 11px, height 91px | left 59px, top 40px, width 11px, height 103px\nElement Type Constraint: text 0\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"text\" style=\"index: 0; left: 13px; top: 21px; width: 75px; height: 11px\"></div>\n</body>\n</html>\n\nContent Constraint: left 23px, top 57px, width 53px, height 65px\nElement Type Constraint: logo 0 | text 1 | text 2 | text 3 | underlay 4 | underlay 5\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"index: 0; left: 37px; top: 10px; width: 27px; height: 9px\"></div>\n<div class=\"text\" style=\"index: 1; left: 22px; top: 26px; width: 58px; height: 14px\"></div>\n<div class=\"text\" style=\"index: 2; left: 26px; top: 46px; width: 47px; height: 5px\"></div>\n<div class=\"text\" style=\"index: 3; left: 45px; top: 130px; width: 21px; height: 6px\"></div>\n<div class=\"underlay\" style=\"index: 4; left: 23px; top: 44px; width: 53px; height: 9px\"></div>\n<div class=\"underlay\" style=\"index: 5; left: 29px; top: 128px; width: 43px; height: 10px\"></div>\n</body>\n</html>\n\nContent Constraint: left 36px, top 42px, width 33px, height 86px | left 17px, top 70px, width 21px, height 22px\nElement Type Constraint: text 0 | text 1 | underlay 2\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"text\" style=\"index: 0; left: 16px; top: 24px; width: 69px; height: 12px\"></div>\n<div class=\"text\" style=\"index: 1; left: 23px; top: 40px; width: 52px; height: 5px\"></div>\n<div class=\"underlay\" style=\"index: 2; left: 18px; top: 39px; width: 64px; height: 8px\"></div>\n</body>\n</html>\n\nContent Constraint: left 23px, top 60px, width 55px, height 83px\nElement Type Constraint: logo 0 | text 1 | underlay 2\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"index: 0; left: 32px; top: 8px; width: 37px; height: 24px\"></div>\n<div class=\"text\" style=\"index: 1; left: 27px; top: 42px; width: 47px; height: 5px\"></div>\n<div class=\"underlay\" style=\"index: 2; left: 26px; top: 38px; width: 52px; height: 12px\"></div>\n</body>\n</html>\n\nContent Constraint: left 26px, top 62px, width 49px, height 69px\nElement Type Constraint: logo 0 | text 1 | text 2 | text 3 | text 4 | underlay 5\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"index: 0; left: 3px; top: 3px; width: 21px; height: 6px\"></div>\n<div class=\"text\" style=\"index: 1; left: 24px; top: 14px; width: 51px; height: 7px\"></div>\n<div class=\"text\" style=\"index: 2; left: 6px; top: 26px; width: 88px; height: 7px\"></div>\n<div class=\"text\" style=\"index: 3; left: 19px; top: 38px; width: 63px; height: 5px\"></div>\n<div class=\"text\" style=\"index: 4; left: 22px; top: 49px; width: 57px; height: 5px\"></div>\n<div class=\"underlay\" style=\"index: 5; left: 18px; top: 48px; width: 64px; height: 9px\"></div>\n</body>\n</html>\n\nContent Constraint: left 17px, top 53px, width 66px, height 79px | left 23px, top 113px, width 13px, height 21px\nElement Type Constraint: logo 0 | text 1 | text 2 | text 3 | text 4 | underlay 5 | underlay 6 | underlay 7\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"index: 0; left: 4px; top: 5px; width: 27px; height: 6px\"></div>\n<div class=\"text\" style=\"index: 1; left: 9px; top: 20px; width: 81px; height: 9px\"></div>\n<div class=\"text\" style=\"index: 2; left: 42px; top: 34px; width: 16px; height: 4px\"></div>\n<div class=\"text\" style=\"index: 3; left: 16px; top: 34px; width: 16px; height: 3px\"></div>\n<div class=\"text\" style=\"index: 4; left: 68px; top: 34px; width: 16px; height: 3px\"></div>\n<div class=\"underlay\" style=\"index: 5; left: 13px; top: 33px; width: 22px; height: 6px\"></div>\n<div class=\"underlay\" style=\"index: 6; left: 39px; top: 33px; width: 22px; height: 6px\"></div>\n<div class=\"underlay\" style=\"index: 7; left: 65px; top: 33px; width: 22px; height: 6px\"></div>\n</body>\n</html>\n\nContent Constraint: left 31px, top 52px, width 41px, height 65px\nElement Type Constraint: logo 0 | text 1 | text 2 | text 3 | underlay 4\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"index: 0; left: 27px; top: 6px; width: 49px; height: 7px\"></div>\n<div class=\"text\" style=\"index: 1; left: 21px; top: 19px; width: 58px; height: 12px\"></div>\n<div class=\"text\" style=\"index: 2; left: 6px; top: 34px; width: 89px; height: 12px\"></div>\n<div class=\"text\" style=\"index: 3; left: 27px; top: 128px; width: 51px; height: 7px\"></div>\n<div class=\"underlay\" style=\"index: 4; left: 19px; top: 126px; width: 63px; height: 12px\"></div>\n</body>\n</html>\n\nContent Constraint: left 56px, top 31px, width 19px, height 101px | left 30px, top 36px, width 19px, height 94px\nElement Type Constraint: text 0 | text 1 | text 2 | underlay 3\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"text\" style=\"index: 0; left: 1px; top: 2px; width: 45px; height: 11px\"></div>\n<div class=\"text\" style=\"index: 1; left: 26px; top: 19px; width: 68px; height: 11px\"></div>\n<div class=\"text\" style=\"index: 2; left: 0px; top: 136px; width: 100px; height: 12px\"></div>\n<div class=\"underlay\" style=\"index: 3; left: 0px; top: 133px; width: 102px; height: 16px\"></div>\n</body>\n</html>\n\nContent Constraint: left 26px, top 59px, width 50px, height 90px\nElement Type Constraint: logo 0 | text 1 | text 2 | text 3 | underlay 4\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"index: 0; left: 32px; top: 0px; width: 35px; height: 8px\"></div>\n<div class=\"text\" style=\"index: 1; left: 34px; top: 16px; width: 32px; height: 5px\"></div>\n<div class=\"text\" style=\"index: 2; left: 9px; top: 25px; width: 82px; height: 13px\"></div>\n<div class=\"text\" style=\"index: 3; left: 32px; top: 45px; width: 36px; height: 4px\"></div>\n<div class=\"underlay\" style=\"index: 4; left: 23px; top: 43px; width: 55px; height: 8px\"></div>\n</body>\n</html>\n\nContent Constraint: left 29px, top 56px, width 41px, height 84px\nElement Type Constraint: logo 0 | text 1 | text 2 | text 3 | text 4 | underlay 5\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"index: 0; left: 38px; top: 8px; width: 24px; height: 5px\"></div>\n<div class=\"text\" style=\"index: 1; left: 7px; top: 16px; width: 85px; height: 8px\"></div>\n<div class=\"text\" style=\"index: 2; left: 35px; top: 29px; width: 33px; height: 4px\"></div>\n<div class=\"text\" style=\"index: 3; left: 14px; top: 58px; width: 10px; height: 4px\"></div>\n<div class=\"text\" style=\"index: 4; left: 14px; top: 63px; width: 16px; height: 4px\"></div>\n<div class=\"underlay\" style=\"index: 5; left: 13px; top: 56px; width: 19px; height: 13px\"></div>\n</body>\n</html>\n\nContent Constraint: left 25px, top 45px, width 49px, height 84px\nElement Type Constraint: logo 0 | text 1 | underlay 2\n"
+        }
+    ],
+    "response": {
+        "id": "chatcmpl-Agn5CGu0OuqsuJZP6KzCGG5V7W0GW",
+        "choices": [
+            {
+                "finish_reason": "stop",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                    "content": "<html>\n<body>\n  <div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n  <div class=\"logo\" style=\"index: 0; left: 28px; top: 8px; width: 46px; height: 10px\"></div>\n  <div class=\"text\" style=\"index: 1; left: 20px; top: 20px; width: 62px; height: 15px\"></div>\n  <div class=\"underlay\" style=\"index: 2; left: 22px; top: 40px; width: 58px; height: 10px\"></div>\n</body>\n</html>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 1,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"index: 0; left: 30px; top: 5px; width: 42px; height: 10px\"></div>\n<div class=\"text\" style=\"index: 1; left: 20px; top: 30px; width: 62px; height: 10px\"></div>\n<div class=\"underlay\" style=\"index: 2; left: 15px; top: 70px; width: 72px; height: 10px\"></div>\n</body>\n</html>\n```",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 2,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<div class=\"canvas\" style=\"position: absolute; left: 0px; top: 0px; width: 102px; height: 150px;\"></div>\n<div class=\"logo\" style=\"position: absolute; left: 27px; top: 10px; width: 48px; height: 8px;\"></div>\n<div class=\"text\" style=\"position: absolute; left: 20px; top: 30px; width: 62px; height: 10px;\"></div>\n<div class=\"underlay\" style=\"position: absolute; left: 24px; top: 44px; width: 54px; height: 86px;\"></div>\n</body>\n</html>\n```",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 3,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 4,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n    <div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px;\"></div>\n    <div class=\"logo\" style=\"index: 0; left: 3px; top: 5px; width: 21px; height: 6px;\"></div>\n    <div class=\"text\" style=\"index: 1; left: 10px; top: 20px; width: 82px; height: 8px;\"></div>\n    <div class=\"underlay\" style=\"index: 2; left: 10px; top: 43px; width: 82px; height: 8px;\"></div>\n</body>\n</html>\n```",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 5,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<div class=\"canvas\" style=\"position: absolute; left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"position: absolute; left: 5px; top: 5px; width: 30px; height: 10px\"></div>\n<div class=\"text\" style=\"position: absolute; left: 10px; top: 20px; width: 82px; height: 10px\"></div>\n<div class=\"underlay\" style=\"position: absolute; left: 20px; top: 44px; width: 62px; height: 11px\"></div>\n</body>\n</html>\n```",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 6,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n    <div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n    <div class=\"logo\" style=\"index: 0; left: 27px; top: 5px; width: 48px; height: 10px\"></div>\n    <div class=\"text\" style=\"index: 1; left: 15px; top: 25px; width: 72px; height: 12px\"></div>\n    <div class=\"underlay\" style=\"index: 2; left: 20px; top: 43px; width: 62px; height: 88px;\"></div>\n</body>\n</html>\n```",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 7,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n  <div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n  <div class=\"logo\" style=\"index: 0; left: 5px; top: 5px; width: 30px; height: 10px\"></div>\n  <div class=\"text\" style=\"index: 1; left: 10px; top: 20px; width: 82px; height: 10px\"></div>\n  <div class=\"underlay\" style=\"index: 2; left: 20px; top: 44px; width: 62px; height: 10px\"></div>\n</body>\n</html>\n```",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 8,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"logo\" style=\"index: 0; left: 10px; top: 10px; width: 82px; height: 10px\"></div>\n<div class=\"text\" style=\"index: 1; left: 20px; top: 35px; width: 62px; height: 8px\"></div>\n<div class=\"underlay\" style=\"index: 2; left: 24px; top: 44px; width: 54px; height: 86px\"></div>\n</body>\n</html>\n```\nThis layout ensures that the logo and text avoid the content constraint area defined at `left 25px, top 45px, width 49px, height 84px`. The logo is placed at the top, and the text just below it. The underlay covers the constrained area effectively, providing a background for the text or logo elements. The alignment and spacing maintain a neat appearance without overlapping the salient content.",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 9,
+                "logprobs": null,
+                "message": {
+                    "content": "<html>\n<body>\n<div class=\"canvas\" style=\"position: relative; width: 102px; height: 150px; background-color: #f0f0f0;\"></div>\n<div class=\"logo\" style=\"position: absolute; left: 5px; top: 10px; width: 25px; height: 10px; background-color: #cccccc;\"></div>\n<div class=\"text\" style=\"position: absolute; left: 15px; top: 30px; width: 72px; height: 12px; background-color: #e0e0e0;\"></div>\n<div class=\"underlay\" style=\"position: absolute; left: 22px; top: 44px; width: 58px; height: 9px; background-color: #d0d0d0;\"></div>\n</body>\n</html>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            }
+        ],
+        "created": 1734761814,
+        "model": "gpt-4o-2024-08-06",
+        "object": "chat.completion",
+        "system_fingerprint": "fp_5f20662549",
+        "usage": {
+            "completion_tokens": 1643,
+            "prompt_tokens": 2931,
+            "total_tokens": 4574,
+            "prompt_tokens_details": {
+                "cached_tokens": 0,
+                "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+                "reasoning_tokens": 0,
+                "audio_tokens": 0,
+                "accepted_prediction_tokens": 0,
+                "rejected_prediction_tokens": 0
+            }
+        }
+    }
+}

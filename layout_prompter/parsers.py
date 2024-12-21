@@ -39,6 +39,9 @@ class Parser(object, metaclass=abc.ABCMeta):
             raise ValueError(f"Invalid output format: {self.output_format}")
 
     def _extract_labels_and_bboxes_from_html(self, predition: str) -> ParserOutput:
+        if re.findall('<style>', predition) or re.findall('<!DOCTYPE html>', predition):
+            raise RuntimeError("Incorrect html detected")
+
         labels = re.findall('<div class="(.*?)"', predition)[1:]  # remove the canvas
         x = re.findall(r"left:.?(\d+)px", predition)[1:]
         y = re.findall(r"top:.?(\d+)px", predition)[1:]
@@ -46,7 +49,6 @@ class Parser(object, metaclass=abc.ABCMeta):
         h = re.findall(r"height:.?(\d+)px", predition)[1:]
 
         if not (len(labels) == len(x) == len(y) == len(w) == len(h)):
-            print(predition)
             raise RuntimeError(
                 "The number of labels, x, y, w, h are not the same "
                 f"(#labels = {len(labels)}, #x = {len(x)}, #y = {len(y)}, #w = {len(w)}, #h = {len(h)})."
@@ -129,9 +131,20 @@ class GPTResponseParser(Parser):
             assert isinstance(message, ChatCompletionMessage), type(message)
             content = message.content
             assert content is not None
-            parsed_predictions.append(self._extract_labels_and_bboxes(content))
+            try:
+                parsed_prediction = self._extract_labels_and_bboxes(content)
+                parsed_predictions.append(parsed_prediction)
+            except RuntimeError as e:
+                print(f"choice index: {choice.index}", e)
 
-        return parsed_predictions
+        print("Num of choices from llm:",len(response.choices))
+        print("Num of valid choices:",len(self.filter(parsed_predictions)))
+        return self.filter(parsed_predictions)
+
+    def filter(self, parsed_predictions: List[ParserOutput]) -> List[ParserOutput]:
+        def is_not_empty(item):
+            return torch.numel(item['bboxes']) > 0 or torch.numel(item['labels']) > 0
+        return list(filter(is_not_empty, parsed_predictions))
 
 
 @dataclass

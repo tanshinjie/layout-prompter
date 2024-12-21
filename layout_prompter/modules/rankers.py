@@ -60,20 +60,23 @@ class Ranker(object):
             pred_bboxes = prediction["bboxes"]
             pred_labels = prediction["labels"]
 
-            metric = []
-            _pred_labels = pred_labels.unsqueeze(0)
-            _pred_bboxes = convert_ltwh_to_ltrb(pred_bboxes).unsqueeze(0)
-            _pred_padding_mask = torch.ones_like(_pred_labels).bool()
-            metric.append(compute_alignment(_pred_bboxes, _pred_padding_mask))
-            metric.append(compute_overlap(_pred_bboxes, _pred_padding_mask))
+            try:
+                metric = []
+                _pred_labels = pred_labels.unsqueeze(0)
+                _pred_bboxes = convert_ltwh_to_ltrb(pred_bboxes).unsqueeze(0)
+                _pred_padding_mask = torch.ones_like(_pred_labels).bool()
+                metric.append(compute_alignment(_pred_bboxes, _pred_padding_mask))
+                metric.append(compute_overlap(_pred_bboxes, _pred_padding_mask))
 
-            if self.val_dataset:
-                metric.append(
-                    compute_maximum_iou(
-                        pred_labels, pred_bboxes, self.val_labels, self.val_bboxes
+                if self.val_dataset:
+                    metric.append(
+                        compute_maximum_iou(
+                            pred_labels, pred_bboxes, self.val_labels, self.val_bboxes
+                        )
                     )
-                )
-            metrics.append(metric)
+                metrics.append(metric)
+            except ValueError as e:
+                print(prediction.index, e)
 
         metrics_tensor = torch.tensor(metrics)
         min_vals, _ = torch.min(metrics_tensor, 0, keepdim=True)

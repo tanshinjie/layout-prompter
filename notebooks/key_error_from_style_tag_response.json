@@ -1,0 +1,156 @@
+{
+    "prompt": [
+        {
+            "role": "system",
+            "content": "Please generate a layout based on the given information. You need to ensure that the generated layout looks realistic, with elements well aligned and avoiding unnecessary overlap.\nTask Description: content-aware layout generation\nPlease place the following elements to avoid salient content, and underlay must be the background of text or logo.\nLayout Domain: poster layout\nCanvas Size: canvas width is 102px, canvas height is 150px"
+        },
+        {
+            "role": "user",
+            "content": "Content Constraint: left 0px, top 91px, width 50px, height 42px | left 54px, top 96px, width 46px, height 37px\nElement Type Constraint: text 0 | text 1 | text 2 | underlay 3 | underlay 4\n<html>\n<body>\n<div class=\"canvas\" style=\"left: 0px; top: 0px; width: 102px; height: 150px\"></div>\n<div class=\"text\" style=\"index: 0; left: 0px; top: 64px; width: 101px; height: 7px\"></div>\n<div class=\"text\" style=\"index: 1; left: 55px; top: 76px; width: 46px; height: 9px\"></div>\n<div class=\"text\" style=\"index: 2; left: 0px; top: 77px; width: 51px; height: 8px\"></div>\n<div class=\"underlay\" style=\"index: 3; left: 0px; top: 60px; width: 102px; height: 14px\"></div>\n<div class=\"underlay\" style=\"index: 4; left: 0px; top: 74px; width: 102px; height: 13px\"></div>\n</body>\n</html>\n\nContent Constraint: left 2px, top 79px, width 27px, height 55px | left 34px, top 83px, width 67px, height 50px\nElement Type Constraint: logo 0 | text 1 | text 2 | text 3 | underlay 4\n"
+        }
+    ],
+    "response": {
+        "id": "chatcmpl-AgmJ8mNNQfB1BM7zd3fbrg2qDsjjZ",
+        "choices": [
+            {
+                "finish_reason": "stop",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n  <div class=\"canvas\" style=\"position: relative; width: 102px; height: 150px; background-color: #f0f0f0;\"></div>\n  \n  <!-- Underlays to highlight text areas -->\n  <div class=\"underlay\" style=\"position: absolute; left: 0px; top: 60px; width: 102px; height: 14px; background-color: rgba(200, 200, 200, 0.5);\"></div>\n  <div class=\"underlay\" style=\"position: absolute; left: 0px; top: 74px; width: 102px; height: 13px; background-color: rgba(200, 200, 200, 0.5);\"></div>\n  \n  <!-- Text elements placed within content constraints -->\n  <div class=\"text\" style=\"position: absolute; left: 0px; top: 64px; width: 101px; height: 7px; background-color: #ffffff;\">Text 0</div>\n  <div class=\"text\" style=\"position: absolute; left: 55px; top: 76px; width: 46px; height: 9px; background-color: #ffffff;\">Text 1</div>\n  <div class=\"text\" style=\"position: absolute; left: 0px; top: 77px; width: 51px; height: 8px; background-color: #ffffff;\">Text 2</div>\n  \n  <!-- Content-aware elements avoiding salient content -->\n  <div class=\"logo\" style=\"position: absolute; left: 2px; top: 79px; width: 27px; height: 55px; background-color: #dddddd;\">Logo</div>\n  <div class=\"text\" style=\"position: absolute; left: 34px; top: 83px; width: 67px; height: 50px; background-color: #ffffff;\">Text 3</div>\n  <div class=\"underlay\" style=\"position: absolute; left: 2px; top: 79px; width: 99px; height: 55px; background-color: rgba(0, 0, 0, 0.1);\"></div>\n</body>\n</html>\n```",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 1,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<div class=\"canvas\" style=\"position: absolute; left: 0px; top: 0px; width: 102px; height: 150px;\"></div>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 2,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<!DOCTYPE html>\n<html>\n<head>\n    <style>\n        .canvas {\n            position: relative;\n            width: 102px;\n            height: 150px;\n            background-color: #f0f0f0;\n        }\n        .logo {\n            position: absolute;\n            width: 27px;\n            height: 55px;\n            background-color: #d1d1d1;\n            left: 2px;\n            top: 79px;\n        }\n        .text-1 {\n            position: absolute;\n            width: 67px;\n            height: 12px;\n            background-color: #e1e1e1;\n            left: 34px;\n            top: 83px;\n        }\n        .text-2 {\n            position: absolute;\n            width: 67px;\n            height: 12px;\n            background-color: #e1e1e1;\n            left: 34px;\n            top: 95px;\n        }\n        .text-3 {\n            position: absolute;\n            width: 67px;\n            height: 12px;\n            background-color: #e1e1e1;\n            left: 34px;\n            top: 107px;\n        }\n        .underlay {\n            position: absolute;\n            width: 102px;\n            height: 13px;\n            background-color: #c1c1c1;\n            left: 0px;\n            top: 120px;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"canvas\">\n        <div class=\"logo\"></div>\n        <div class=\"text-1\"></div>\n        <div class=\"text-2\"></div>\n        <div class=\"text-3\"></div>\n        <div class=\"underlay\"></div>\n    </div>\n</body>\n</html>\n```",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 3,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<div class=\"canvas\" style=\"position: relative; width: 102px; height: 150px; background-color: #f0f0f0;\"></div>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 4,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<div class=\"canvas\" style=\"position: absolute; left: 0px; top: 0px; width: 102px; height: 150px;\"></div>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 5,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<style>\n  .canvas {\n    position: absolute;\n    width: 102px;\n    height: 150px;\n    background-color: #f0f0f0; /* Background color for the canvas */\n  }\n  .logo {\n    position: absolute;\n    left: 2px;\n    top: 79px;\n    width: 27px;\n    height: 55px;\n    background-color: #d3d3d3; /* Placeholder color for logo */\n  }\n  .text {\n    position: absolute;\n    background-color: rgba(255, 255, 255, 0.8); /* Background for text to enhance readability */\n  }\n  .underlay {\n    position: absolute;\n    background-color: rgba(200, 200, 200, 0.5); /* Underlay background color */\n  }\n</style>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 6,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<!DOCTYPE html>\n<html>\n<head>\n    <style>\n        .canvas {\n            position: absolute;\n            left: 0px;\n            top: 0px;\n            width: 102px;\n            height: 150px;\n            background-color: #f3f3f3;\n        }\n        .logo {\n            position: absolute;\n            left: 2px;\n            top: 79px;\n            width: 27px;\n            height: 55px;\n            background-color: #cccccc;\n        }\n        .text1 {\n            position: absolute;\n            left: 5px;\n            top: 65px;\n            width: 92px;\n            height: 10px;\n            background-color: #e0e0e0;\n        }\n        .text2 {\n            position: absolute;\n            left: 34px;\n            top: 83px;\n            width: 67px;\n            height: 10px;\n            background-color: #e0e0e0;\n        }\n        .text3 {\n            position: absolute;\n            left: 34px;\n            top: 95px;\n            width: 67px;\n            height: 10px;\n            background-color: #e0e0e0;\n        }\n        .underlay {\n            position: absolute;\n            left: 0px;\n            top: 74px;\n            width: 102px;\n            height: 13px;\n            background-color: #d0d0d0;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"canvas\"></div>\n    <div class=\"logo\"></div>\n    <div class=\"underlay\"></div>\n    <div class=\"text1\"></div>\n    <div class=\"text2\"></div>\n    <div class=\"text3\"></div>\n</body>\n</html>\n```",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 7,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n  <div class=\"canvas\" style=\"position: relative; width: 102px; height: 150px; background-color: #f0f0f0;\"></div>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 8,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n<div class=\"canvas\" style=\"position: relative; width: 102px; height: 150px; background-color: #f0f0f0;\"></div>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            },
+            {
+                "finish_reason": "stop",
+                "index": 9,
+                "logprobs": null,
+                "message": {
+                    "content": "```html\n<html>\n<body>\n  <div class=\"canvas\" style=\"position: relative; width: 102px; height: 150px; background-color: #f0f0f0;\">\n    <!-- Underlay elements to act as background for text and logo -->\n    <div class=\"underlay\" style=\"position: absolute; left: 0px; top: 60px; width: 102px; height: 14px; background-color: #d5d5d5;\"></div>\n    <div class=\"underlay\" style=\"position: absolute; left: 0px; top: 74px; width: 102px; height: 13px; background-color: #d5d5d5;\"></div>",
+                    "role": "assistant",
+                    "function_call": null,
+                    "tool_calls": null,
+                    "refusal": null
+                }
+            }
+        ],
+        "created": 1734758834,
+        "model": "gpt-4o-2024-08-06",
+        "object": "chat.completion",
+        "system_fingerprint": "fp_9faba9f038",
+        "usage": {
+            "completion_tokens": 1859,
+            "prompt_tokens": 465,
+            "total_tokens": 2324,
+            "prompt_tokens_details": {
+                "cached_tokens": 0,
+                "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+                "reasoning_tokens": 0,
+                "audio_tokens": 0,
+                "accepted_prediction_tokens": 0,
+                "rejected_prediction_tokens": 0
+            }
+        }
+    }
+}
