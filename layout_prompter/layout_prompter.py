@@ -72,7 +72,8 @@ class LayoutPrompter(object):
     ) -> List[RankerOutput]:
         try:
             retry_layout_generator = self._generate_layout.retry_with(
-                stop=stop_after_attempt(max_num_try)
+                # stop=stop_after_attempt(max_num_try)
+                stop=stop_after_attempt(1)
             )
             return retry_layout_generator(self, prompt_messages, **kwargs)
         except Exception as err:

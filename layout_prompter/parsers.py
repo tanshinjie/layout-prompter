@@ -46,6 +46,7 @@ class Parser(object, metaclass=abc.ABCMeta):
         h = re.findall(r"height:.?(\d+)px", predition)[1:]
 
         if not (len(labels) == len(x) == len(y) == len(w) == len(h)):
+            print(predition)
             raise RuntimeError(
                 "The number of labels, x, y, w, h are not the same "
                 f"(#labels = {len(labels)}, #x = {len(x)}, #y = {len(y)}, #w = {len(w)}, #h = {len(h)})."

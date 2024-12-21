@@ -1,4 +1,5 @@
 import abc
+import json
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, TypedDict
 
@@ -90,6 +91,12 @@ class GPTCallar(LLM):
             else self.stop_token,
             **kwargs,
         )
+        to_save = {
+            "prompt": prompt_messages,
+            "response": response.model_dump()
+        }
+        with open("response.json", 'w+') as f:
+            json.dump(to_save, f, indent=4)
         return response
 
 
